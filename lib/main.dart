@@ -17,6 +17,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Cryptocurrency Convertor",
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+        accentColor: Colors.purple,
+      ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Cryptocurrency Convertor")),
         body: MyConvertor(),
@@ -41,29 +45,24 @@ class _MyConvertorState extends State<MyConvertor> {
       cardano = "0",
       hex = "0",
       dogecoin = "0";
-  int maxFractionDigits = 5;
 
-  final TextEditingController t1 = TextEditingController(text: "0");
+  final TextEditingController val = TextEditingController(text: "0");
 
-  void doCalculate() {
+  void Convert() {
     updateCurrencies();
     setState(() {
-      bitcoin = (int.parse(t1.text) / getCurrencyValue("BTC"))
-          .toStringAsFixed(maxFractionDigits);
-      binance = (int.parse(t1.text) / getCurrencyValue("BNB"))
-          .toStringAsFixed(maxFractionDigits);
-      hex = (int.parse(t1.text) / getCurrencyValue("HEX"))
-          .toStringAsFixed(maxFractionDigits);
-      cardano = (int.parse(t1.text) / getCurrencyValue("ADA"))
-          .toStringAsFixed(maxFractionDigits);
-      ethereum = (int.parse(t1.text) / getCurrencyValue("ETH"))
-          .toStringAsFixed(maxFractionDigits);
-      tether = (int.parse(t1.text) / getCurrencyValue("USDT"))
-          .toStringAsFixed(maxFractionDigits);
-      xrp = (int.parse(t1.text) / getCurrencyValue("XRP"))
-          .toStringAsFixed(maxFractionDigits);
-      dogecoin = (int.parse(t1.text) / getCurrencyValue("DOGE"))
-          .toStringAsFixed(maxFractionDigits);
+      bitcoin =
+          (int.parse(val.text) / getCurrencyValue("BTC")).toStringAsFixed(5);
+      binance =
+          (int.parse(val.text) / getCurrencyValue("BNB")).toStringAsFixed(5);
+      hex = (int.parse(val.text) / getCurrencyValue("HEX")).toStringAsFixed(5);
+      cardano =
+          (int.parse(val.text) / getCurrencyValue("ADA")).toStringAsFixed(5);
+      ethereum =
+          (int.parse(val.text) / getCurrencyValue("ETH")).toStringAsFixed(5);
+      tether =
+          (int.parse(val.text) / getCurrencyValue("USDT")).toStringAsFixed(5);
+      xrp = (int.parse(val.text) / getCurrencyValue("XRP")).toStringAsFixed(5);
     });
   }
 
@@ -153,7 +152,7 @@ class _MyConvertorState extends State<MyConvertor> {
               child: Column(
                 children: [
                   TextField(
-                    controller: t1,
+                    controller: val,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: "Enter Amount in INR",
@@ -164,7 +163,7 @@ class _MyConvertorState extends State<MyConvertor> {
                         "Calculate",
                         style: TextStyle(fontSize: 20),
                       ),
-                      onPressed: doCalculate),
+                      onPressed: Convert),
                 ],
               ),
             ),

@@ -34,104 +34,126 @@ class MyConvertor extends StatefulWidget {
 class _MyConvertorState extends State<MyConvertor> {
   @override
   Widget build(BuildContext context) {
-    return DataTable(columns: [
-      DataColumn(
-          label: Container(
-        width: 80,
-        child: Text(
-          'Currency Symbol',
-        ),
-      )),
-      DataColumn(
-          label: Container(
-        width: 80,
-        child: Text(
-          'Crypto Name',
-        ),
-      )),
-      DataColumn(
-          label: Container(
-        width: 80,
-        child: Text(
-          'Equivalent',
-        ),
-      ))
-    ], rows: [
-      DataRow(
-        cells: [
-          DataCell(Text('Bitcoin img')),
-          DataCell(Text('Bitcoin')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Ethereum img')),
-          DataCell(Text('Ethereum')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Tether img')),
-          DataCell(Text('Tether')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Binance img')),
-          DataCell(Text('Binance')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Hex img')),
-          DataCell(Text('Hex')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('XRP img')),
-          DataCell(Text('XRP')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Cardano img')),
-          DataCell(Text('Cardano')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(
-        cells: [
-          DataCell(Text('Cardano img')),
-          DataCell(Text('Cardano')),
-          DataCell(Text('___')),
-        ],
-      ),
-      DataRow(cells: [
-        DataCell(Text('rupee img')),
-        DataCell(
-          TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              hintText: "Enter Amount in INR",
+    final double width = MediaQuery.of(context).size.width;
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          DataTable(columnSpacing: 0, columns: [
+            DataColumn(
+                label: Container(
+              width: width * .25,
+              child: Text(
+                'Logo',
+              ),
+            )),
+            DataColumn(
+                label: Container(
+              width: width * .35,
+              child: Text(
+                'Crypto Name',
+              ),
+            )),
+            DataColumn(
+                label: Container(
+              width: width * .35,
+              child: Text(
+                'Equivalent',
+              ),
+            ))
+          ], rows: [
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/bitcoin.png", height: 45)),
+                DataCell(Text('Bitcoin')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/ethereum.jpg", height: 45)),
+                DataCell(Text('Ethereum')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/tether.png", height: 45)),
+                DataCell(Text('Tether')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/binance.jpg", height: 45)),
+                DataCell(Text('Binance')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/hex.png", height: 45)),
+                DataCell(Text('Hex')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/xrp.png", height: 45)),
+                DataCell(Text('XRP')),
+                DataCell(Text('___')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Image.asset("assets/images/cardano.png", height: 45)),
+                DataCell(Text('Cardano')),
+                DataCell(Text('___')),
+              ],
+            ),
+          ]),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Enter Amount in INR",
+                    ),
+                  ),
+                  ElevatedButton(
+                      child: Text(
+                        "Calculate",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () => {}),
+                ],
+              ),
             ),
           ),
-        ),
-        DataCell(
-          ElevatedButton(
-              child: Text(
-                "Calculate",
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: () => {}),
-        ),
-      ]),
-    ]);
+        ],
+      ),
+    );
+    // DataRow(cells: [
+    //   DataCell(Text('rupee img')),
+    //   DataCell(
+    //     TextField(
+    //       keyboardType: TextInputType.number,
+    //       decoration: InputDecoration(
+    //         hintText: "Enter Amount in INR",
+    //       ),
+    //     ),
+    //   ),
+    //   DataCell(
+    //     ElevatedButton(
+    //         child: Text(
+    //           "Calculate",
+    //           style: TextStyle(fontSize: 20),
+    //         ),
+    //         onPressed: () => {}),
+    //   ),
+    // ]),
   }
 }

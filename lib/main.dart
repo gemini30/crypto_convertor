@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'HTTP requests/nomics_api.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,6 +33,40 @@ class MyConvertor extends StatefulWidget {
 }
 
 class _MyConvertorState extends State<MyConvertor> {
+  String bitcoin = "0",
+      binance = "0",
+      xrp = "0",
+      ethereum = "0",
+      tether = "0",
+      cardano = "0",
+      hex = "0",
+      dogecoin = "0";
+  int maxFractionDigits = 5;
+
+  final TextEditingController t1 = TextEditingController(text: "0");
+
+  void doCalculate() {
+    updateCurrencies();
+    setState(() {
+      bitcoin = (int.parse(t1.text) / getCurrencyValue("BTC"))
+          .toStringAsFixed(maxFractionDigits);
+      binance = (int.parse(t1.text) / getCurrencyValue("BNB"))
+          .toStringAsFixed(maxFractionDigits);
+      hex = (int.parse(t1.text) / getCurrencyValue("HEX"))
+          .toStringAsFixed(maxFractionDigits);
+      cardano = (int.parse(t1.text) / getCurrencyValue("ADA"))
+          .toStringAsFixed(maxFractionDigits);
+      ethereum = (int.parse(t1.text) / getCurrencyValue("ETH"))
+          .toStringAsFixed(maxFractionDigits);
+      tether = (int.parse(t1.text) / getCurrencyValue("USDT"))
+          .toStringAsFixed(maxFractionDigits);
+      xrp = (int.parse(t1.text) / getCurrencyValue("XRP"))
+          .toStringAsFixed(maxFractionDigits);
+      dogecoin = (int.parse(t1.text) / getCurrencyValue("DOGE"))
+          .toStringAsFixed(maxFractionDigits);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -43,7 +78,7 @@ class _MyConvertorState extends State<MyConvertor> {
                 label: Container(
               width: width * .25,
               child: Text(
-                'Logo',
+                '',
               ),
             )),
             DataColumn(
@@ -65,49 +100,49 @@ class _MyConvertorState extends State<MyConvertor> {
               cells: [
                 DataCell(Image.asset("assets/images/bitcoin.png", height: 45)),
                 DataCell(Text('Bitcoin')),
-                DataCell(Text('___')),
+                DataCell(Text("$bitcoin")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/ethereum.jpg", height: 45)),
                 DataCell(Text('Ethereum')),
-                DataCell(Text('___')),
+                DataCell(Text("$ethereum")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/tether.png", height: 45)),
                 DataCell(Text('Tether')),
-                DataCell(Text('___')),
+                DataCell(Text("$tether")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/binance.jpg", height: 45)),
                 DataCell(Text('Binance')),
-                DataCell(Text('___')),
+                DataCell(Text("$binance")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/hex.png", height: 45)),
                 DataCell(Text('Hex')),
-                DataCell(Text('___')),
+                DataCell(Text("$hex")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/xrp.png", height: 45)),
                 DataCell(Text('XRP')),
-                DataCell(Text('___')),
+                DataCell(Text("$xrp")),
               ],
             ),
             DataRow(
               cells: [
                 DataCell(Image.asset("assets/images/cardano.png", height: 45)),
                 DataCell(Text('Cardano')),
-                DataCell(Text('___')),
+                DataCell(Text("$cardano")),
               ],
             ),
           ]),
@@ -118,6 +153,7 @@ class _MyConvertorState extends State<MyConvertor> {
               child: Column(
                 children: [
                   TextField(
+                    controller: t1,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: "Enter Amount in INR",
@@ -128,7 +164,7 @@ class _MyConvertorState extends State<MyConvertor> {
                         "Calculate",
                         style: TextStyle(fontSize: 20),
                       ),
-                      onPressed: () => {}),
+                      onPressed: doCalculate),
                 ],
               ),
             ),
@@ -136,24 +172,5 @@ class _MyConvertorState extends State<MyConvertor> {
         ],
       ),
     );
-    // DataRow(cells: [
-    //   DataCell(Text('rupee img')),
-    //   DataCell(
-    //     TextField(
-    //       keyboardType: TextInputType.number,
-    //       decoration: InputDecoration(
-    //         hintText: "Enter Amount in INR",
-    //       ),
-    //     ),
-    //   ),
-    //   DataCell(
-    //     ElevatedButton(
-    //         child: Text(
-    //           "Calculate",
-    //           style: TextStyle(fontSize: 20),
-    //         ),
-    //         onPressed: () => {}),
-    //   ),
-    // ]),
   }
 }
